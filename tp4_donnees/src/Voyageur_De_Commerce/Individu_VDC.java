@@ -1,6 +1,6 @@
 package Voyageur_De_Commerce;
 
-import Algo_Genetiques.Individu
+import Algo_Genetiques.Individu;
 
 public class Individu_VDC implements Individu {
 
