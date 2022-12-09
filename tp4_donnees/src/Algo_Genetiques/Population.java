@@ -1,6 +1,7 @@
 package Algo_Genetiques;
 
 import java.util.List;
+import java.util.Random;
 import java.util.ArrayList;
 
 public class Population<Indiv extends Individu> {
@@ -13,7 +14,10 @@ public class Population<Indiv extends Individu> {
 	 * construit une population à partir d'un tableau d'individu
 	 */
 	public  Population(Indiv[] popu){
-		//TODO
+		population = new ArrayList<Indiv>();
+		for (int i=0; i<popu.length; i++){
+			population.add(popu[i]);
+		}
 	}
 	
 	/**
@@ -22,8 +26,15 @@ public class Population<Indiv extends Individu> {
 	 * @return indice de l'individu sélectionné
 	 */
 	public int selection(double adapt_totale){
-		//TODO
-		return -1;
+		Random r = new Random();
+		double alea = r.nextDouble()*adapt_totale;
+		double somme = 0;
+		int i=0;
+		while (somme<alea){
+			somme += population.get(i).adaptation();
+			i++;
+		}
+		return i-1;
 	}
 	
 	/**
@@ -40,21 +51,29 @@ public class Population<Indiv extends Individu> {
 		/* élitisme */
 		//TODO (dans un second temps)
 		
+		// on calcule l'adaptation totale de la population
+		double adapt_totale = adaptation_maximale();
 
 		// tant qu'on n'a pas le bon nombre 
 		while (new_generation.size()<population.size()){
 			// on sélectionne les parents
-			//TODO
+			int indexElemSelec = selection(adapt_totale);
+			Indiv parent1 = population.get(indexElemSelec);
+			indexElemSelec = selection(adapt_totale);
+			Indiv parent2 = population.get(indexElemSelec);
 			
 			// ils se reproduisent
-			//TODO
+			Individu[] enfants = parent1.croisement(parent2);
 			
 			// on les ajoute à la nouvelle génération
-			//TODO
+			new_generation.add((Indiv)enfants[0]);
+			new_generation.add((Indiv)enfants[1]);
 		}
 		
 		// on applique une éventuelle mutation à toute la nouvelle génération
-		//TODO
+		for (Indiv i : new_generation){
+			i.mutation(prob_mut);
+		}
 
 		//on remplace l'ancienne par la nouvelle
 		population = new_generation;
@@ -64,23 +83,30 @@ public class Population<Indiv extends Individu> {
 	 * renvoie l'individu de la population ayant l'adaptation maximale
 	 */	
 	public Indiv individu_maximal(){
-		//TODO
-		return null;
+		Indiv max = population.get(0);
+		for (Indiv i : population){
+			if (i.adaptation()>max.adaptation()){
+				max = i;
+			}
+		}
+		return max;
 	}
 
 	/**
 	 * renvoie l'adaptation moyenne de la population
 	 */
 	public double adaptation_moyenne(){
-		//TODO
-		return -1;
+		double somme = 0;
+		for (Indiv i : population){
+			somme += i.adaptation();
+		}
+		return somme/population.size();
 	}
 	
 	/**
 	 * renvoie l'adaptation maximale de la population
 	 */	
 	public double adaptation_maximale(){
-		//TODO
-		return -1;
+		return individu_maximal().adaptation();
 	}
 }
