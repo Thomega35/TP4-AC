@@ -21,8 +21,8 @@ public class Individu_SAD implements Individu{
 
     }
 
-    public int[] getPoids() {
-        return poids;
+    public boolean[] getSad() {
+        return sad;
     }
 
     @Override
@@ -44,26 +44,32 @@ public class Individu_SAD implements Individu{
     public Individu[] croisement(Individu conjoint) {
 
         Individu_SAD conjoint_SAD = (Individu_SAD)conjoint;
-        conjoint_SAD.getPoids(); 
+        boolean[] poids_conjoint = conjoint_SAD.getSad(); 
 
         int random_val = (int)Math.random()*length;
 
         for(int i = 0 ; i < random_val ; i++){
             boolean save = sad[i];
-            
+            sad[i] = poids_conjoint[i];
+            poids_conjoint[i] = save;
         }
 
-        for(int i = random_val ; i < length ; i++){
+        Individu[] enfants = new Individu_SAD[2];
+        enfants[0] = conjoint_SAD;
+        enfants[1] = this;
 
-        }
-
-        return null;
+        return enfants;
     }
 
     @Override
     public void mutation(double prob) {
         
-        
+        for(int i = 0 ; i < length ; i++){
+            if(Math.random() < prob){
+                sad[i] = !sad[i];
+            }
+        }
+
     }
     
     
