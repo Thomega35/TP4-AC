@@ -72,13 +72,12 @@ public class Client_Sac_A_Dos {
 		 * on s'arrête si on a atteint la capacité ou si on fait un nombre donné (paramètre) d'itérations
 		 * le résultat est alors donné par l'individu maximal de la dernière génération
 		 */
-		int nbr_iter=100;
-		for(int i=0;i<nbr_iter;i++){
+		int nb_iter = 0;
+		int itermax = 1000;
+		while(nb_iter<itermax && pop.adaptation_maximale()==capacite){
 			pop.reproduction(prob_mut);
-			System.out.println("generation "+i+" : adaptation moyenne = "+pop.adaptation_moyenne()+" ; adaptation max = "+pop.adaptation_maximale());
-			if (pop.adaptation_maximale()==capacite) break;
+			System.out.println("génération "+nb_iter+" : adaptation moyenne = "+pop.adaptation_moyenne()+" ; adaptation maximale = "+pop.adaptation_maximale());
+			nb_iter++;
 		}
-
 	}
 }
-
