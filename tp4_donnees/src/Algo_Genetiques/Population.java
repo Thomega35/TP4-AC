@@ -45,14 +45,15 @@ public class Population<Indiv extends Individu> {
 	@SuppressWarnings("unchecked")
 	public void reproduction(double prob_mut) {
 		
+		// on calcule l'adaptation totale de la population
+		double adapt_totale = adaptation_maximale();
+		
 		/***** on construit la nouvelle génération ****/
 		List<Indiv> new_generation = new ArrayList<Indiv>();
 		
 		/* élitisme */
 		//TODO (dans un second temps)
 		
-		// on calcule l'adaptation totale de la population
-		double adapt_totale = adaptation_maximale();
 
 		// tant qu'on n'a pas le bon nombre 
 		while (new_generation.size()<population.size()){
