@@ -48,12 +48,22 @@ public class Client_Sac_A_Dos {
 //		int capacite=350;		
 		
 		double[] poids = charge_poids("./data_sad/nbrobj"+nbr_objets+"_capacite"+capacite+".txt",nbr_objets);
+
+		/*
+		 * On crée un tableau d'individus associé au tableau de poids
+		 * ainsi qu’au poids maximal du problème du sac à dos considéré.
+		 */
+		Individu_SAD[] indiv = new Individu_SAD[nbr_indiv];
+		for(int i=0;i<nbr_indiv;i++){
+			indiv[i] = new Individu_SAD(poids,capacite);
+		}
+
 		
 		/* on crée une population (aléatoire)
 		 * de nbr_indiv individus associés au problème
 		 * du sac à dos considéré 
 		 */
-		//TODO
+		Population<Individu_SAD> pop = new Population<Individu_SAD>(indiv);
 
 		
 		/* on génére les générations successives
@@ -62,7 +72,12 @@ public class Client_Sac_A_Dos {
 		 * on s'arrête si on a atteint la capacité ou si on fait un nombre donné (paramètre) d'itérations
 		 * le résultat est alors donné par l'individu maximal de la dernière génération
 		 */
-		//TODO
+		int nbr_iter=100;
+		for(int i=0;i<nbr_iter;i++){
+			pop.reproduction(prob_mut);
+			System.out.println("generation "+i+" : adaptation moyenne = "+pop.adaptation_moyenne()+" ; adaptation max = "+pop.adaptation_maximale());
+			if (pop.adaptation_maximale()==capacite) break;
+		}
 
 	}
 }
