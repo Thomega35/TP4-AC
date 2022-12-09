@@ -1,18 +1,16 @@
 package Sac_A_Dos;
 
-import java.util.Random;
-
 import Algo_Genetiques.Individu;
 
 public class Individu_SAD implements Individu{
 
     private boolean[] sad;
-    private int poids_Max;
-    private int[] poids;
+    private double poids_Max;
+    private double[] poids;
 
     private int length;
 
-    public Individu_SAD(int poids[], int poids_Max) {
+    public Individu_SAD(double[] poids, double poids_Max) {
         
         this.poids_Max = poids_Max;
         this.poids = poids;
@@ -28,7 +26,7 @@ public class Individu_SAD implements Individu{
     @Override
     public double adaptation() {
         
-        int poids_Total = 0;
+        double poids_Total = 0;
 
         for(int i = 0 ; i < poids.length ; i++){
             if(sad[i] == true){
