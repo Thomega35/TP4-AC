@@ -56,7 +56,7 @@ public class Population<Indiv extends Individu> {
 		
 		/* élitisme */
 		//TODO (dans un second temps)
-		
+		new_generation.add(individu_maximal());
 
 		// tant qu'on n'a pas le bon nombre 
 		while (new_generation.size()<population.size()){
