@@ -74,7 +74,7 @@ public class Client_Sac_A_Dos {
 		 */
 		int nb_iter = 0;
 		int itermax = 1000;
-		while(nb_iter<itermax && pop.adaptation_maximale()==capacite){
+		while(nb_iter<itermax && (pop.adaptation_maximale()<capacite-2 || pop.adaptation_maximale()>capacite)){
 			pop.reproduction(prob_mut);
 			System.out.println("génération "+nb_iter+" : adaptation moyenne = "+pop.adaptation_moyenne()+" ; adaptation maximale = "+pop.adaptation_maximale());
 			nb_iter++;
