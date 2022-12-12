@@ -34,7 +34,7 @@ public class Individu_SAD implements Individu{
             }
         }
 
-        return Math.abs(poids_Total - poids_Max);
+        return poids_Total > poids_Max ? 0 : poids_Total;
 
     }
 
