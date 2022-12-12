@@ -55,7 +55,6 @@ public class Population<Indiv extends Individu> {
 		List<Indiv> new_generation = new ArrayList<Indiv>();
 		
 		/* élitisme */
-		//TODO (dans un second temps)
 		new_generation.add(individu_maximal());
 
 		// tant qu'on n'a pas le bon nombre 
