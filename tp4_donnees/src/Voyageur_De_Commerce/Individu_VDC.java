@@ -4,15 +4,21 @@ import Algo_Genetiques.Individu;
 
 public class Individu_VDC implements Individu {
 
-	private City cities[];
+	private double cities_x[];
+	private double cities_y[];
+
+	private int parcours[];
 
 	//Constructeur
 	public Individu_VDC(double[] coord_x, double[] coord_y) {
 		
-		cities = new City[coord_x.length];
+		this.cities_x = coord_x;
+		this.cities_y = coord_y;
 
-		for(int i=0; i<coord_x.length; i++) {
-			cities[i] = new City(coord_x[i], coord_y[i]);
+		this.parcours = new int[coord_x.length];
+
+		for(int i = 0; i < coord_x.length; i++){
+			parcours[i] = i;
 		}
 
 	}
@@ -21,8 +27,19 @@ public class Individu_VDC implements Individu {
 	 */
 	@Override
 	public double adaptation() {
-		// TODO 
-		return 0;
+
+		double distance = 0;
+
+		for(int i = 0; i < parcours.length - 1; i++){
+			
+			distance += Math.sqrt(Math.pow(cities_x[parcours[i]] - cities_x[parcours[i+1]], 2) + Math.pow(cities_y[parcours[i]] - cities_y[parcours[i+1]], 2));
+
+		}
+
+		distance += Math.sqrt(Math.pow(cities_x[parcours[parcours.length-1]] - cities_x[parcours[0]], 2) + Math.pow(cities_y[parcours[parcours.length-1]] - cities_y[parcours[0]], 2));
+
+		return distance;
+
 	}
 	@Override
 	public Individu[] croisement(Individu conjoint) {
@@ -62,13 +79,20 @@ public class Individu_VDC implements Individu {
 	/* Accesseurs (pour Display_VDC)
 	 */
 	public int[] get_parcours(){
-		return null;
+		
+		return parcours;
+
 	}
+
 	public double[] get_coord_x(){
-		return null;
+		
+		return cities_x;
+
 	}
 	
 	public double[] get_coord_y(){
-		return null;
+		
+		return cities_y;
+
 	}	
 }
