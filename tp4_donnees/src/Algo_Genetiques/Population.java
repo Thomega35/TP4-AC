@@ -34,7 +34,7 @@ public class Population<Indiv extends Individu> {
 			somme += population.get(i).adaptation();
 			i++;
 		}
-		return i-1;
+		return somme>=alea ? i-1 : -1;
 	}
 	
 	/**
@@ -108,6 +108,10 @@ public class Population<Indiv extends Individu> {
 	 * renvoie l'adaptation maximale de la population
 	 */	
 	public double adaptation_maximale(){
-		return individu_maximal().adaptation();
+		double sum = 0;
+		for (Indiv i : population){
+			sum += i.adaptation();
+		}
+		return sum;
 	}
 }

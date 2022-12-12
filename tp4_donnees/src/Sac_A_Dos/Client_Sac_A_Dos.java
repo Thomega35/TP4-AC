@@ -56,6 +56,7 @@ public class Client_Sac_A_Dos {
 		Individu_SAD[] indiv = new Individu_SAD[nbr_indiv];
 		for(int i=0;i<nbr_indiv;i++){
 			indiv[i] = new Individu_SAD(poids,capacite);
+			indiv[i].mutation(0.5);
 		}
 
 		

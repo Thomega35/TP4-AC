@@ -15,6 +15,9 @@ public class Individu_SAD implements Individu{
         this.poids_Max = poids_Max;
         this.poids = poids;
         this.sad = new boolean[poids.length];
+        for (int i = 0; i < poids.length; i++) {
+            this.sad[i] = Math.random() > 0.5 ? true : false;
+        }
         this.length = poids.length;
 
     }
