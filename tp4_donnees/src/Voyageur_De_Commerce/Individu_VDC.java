@@ -4,9 +4,17 @@ import Algo_Genetiques.Individu;
 
 public class Individu_VDC implements Individu {
 
+	private City cities[];
+
 	//Constructeur
 	public Individu_VDC(double[] coord_x, double[] coord_y) {
-		// TODO 
+		
+		cities = new City[coord_x.length];
+
+		for(int i=0; i<coord_x.length; i++) {
+			cities[i] = new City(coord_x[i], coord_y[i]);
+		}
+
 	}
 
 	/* Classes de l'interface Individu
