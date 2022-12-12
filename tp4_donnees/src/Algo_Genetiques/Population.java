@@ -46,7 +46,10 @@ public class Population<Indiv extends Individu> {
 	public void reproduction(double prob_mut) {
 		
 		// on calcule l'adaptation totale de la population
-		double adapt_totale = adaptation_maximale();
+		double adapt_totale = 0;
+		for (Indiv i : population){
+			adapt_totale += i.adaptation();
+		}
 		
 		/***** on construit la nouvelle génération ****/
 		List<Indiv> new_generation = new ArrayList<Indiv>();
@@ -108,10 +111,6 @@ public class Population<Indiv extends Individu> {
 	 * renvoie l'adaptation maximale de la population
 	 */	
 	public double adaptation_maximale(){
-		double sum = 0;
-		for (Indiv i : population){
-			sum += i.adaptation();
-		}
-		return sum;
+		return individu_maximal().adaptation();
 	}
 }
