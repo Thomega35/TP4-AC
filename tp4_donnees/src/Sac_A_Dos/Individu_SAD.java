@@ -49,15 +49,26 @@ public class Individu_SAD implements Individu{
 
         int random_val = (int)Math.random()*length;
 
+        Individu_SAD enfant1 = new Individu_SAD(poids, poids_Max);
+        Individu_SAD enfant2 = new Individu_SAD(poids, poids_Max); 
+
         for(int i = 0 ; i < random_val ; i++){
-            boolean save = sad[i];
-            sad[i] = poids_conjoint[i];
-            poids_conjoint[i] = save;
+            boolean valp1 = sad[i];
+            boolean valp2 = poids_conjoint[i];
+            enfant1.sad[i] = valp1;
+            enfant2.sad[i] = valp2;
+        }
+
+        for (int i = random_val; i < length; i++) {
+            boolean valp1 = sad[i];
+            boolean valp2 = poids_conjoint[i];
+            enfant1.sad[i] = valp2;
+            enfant2.sad[i] = valp1;
         }
 
         Individu[] enfants = new Individu_SAD[2];
-        enfants[0] = conjoint_SAD;
-        enfants[1] = this;
+        enfants[0] = enfant1;
+        enfants[1] = enfant2;
 
         return enfants;
     }
