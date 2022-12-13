@@ -1,5 +1,11 @@
 package Voyageur_De_Commerce;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 import Algo_Genetiques.Individu;
 
 public class Individu_VDC implements Individu {
@@ -19,6 +25,15 @@ public class Individu_VDC implements Individu {
 
 		for(int i = 0; i < coord_x.length; i++){
 			parcours[i] = i;
+		}
+
+		Random rand = new Random();
+
+		for (int i = 0; i < this.parcours.length; i++) {
+			int randomIndexToSwap = rand.nextInt(this.parcours.length);
+			int temp = this.parcours[randomIndexToSwap];
+			this.parcours[randomIndexToSwap] = this.parcours[i];
+			this.parcours[i] = temp;
 		}
 
 	}
