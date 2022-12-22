@@ -13,7 +13,7 @@ public class Population<Indiv extends Individu> {
 	/**
 	 * construit une population à partir d'un tableau d'individu
 	 */
-	public  Population(Indiv[] popu){
+	public Population(Indiv[] popu){
 		population = new ArrayList<Indiv>();
 		for (int i=0; i<popu.length; i++){
 			population.add(popu[i]);

@@ -50,41 +50,71 @@ public class Individu_VDC implements Individu {
 
 		distance += Math.sqrt(Math.pow(cities_x[parcours[parcours.length-1]] - cities_x[parcours[0]], 2) + Math.pow(cities_y[parcours[parcours.length-1]] - cities_y[parcours[0]], 2));
 
-		return distance;
+		return 1/distance;
 
 	}
+
 	@Override
 	public Individu[] croisement(Individu conjoint) {
-		// Une possibilité: croisement "prudent"
-		// A COMPLETER ET A ADAPTER A VOS CHOIX DE REPRESENTATION
 
-		// boolean[] b1 = new boolean[parcours.length];
-		// boolean[] b2 = new boolean[parcours.length];
-		// for(int i=0;i<parcours.length;i++){
-		// 	b1[i]=false;
-		// 	b2[i]=false;
-		// }
-		// Random r = new Random();
-		// int ind = r.nextInt(parcours.length);
-		
-		// // on regarde les villes qu'on rencontre dans la premiere partie
-		// for(int i=0;i<ind;i++){
-		// 	enfants[0].parcours[i] = this.parcours[i];
-		// 	b1[this.parcours[i]] = true;
+		Individu_VDC conjoint_VDC = (Individu_VDC) conjoint;
 
-		// 	enfants[1].parcours[i] = conjoint_vdc.parcours[i];
-		// 	b2[conjoint_vdc.parcours[i]] = true;
-		// }
-		
-		// //deuxieme partie : si la ville n'a pas été visitée dans la premiere partie, on prend
-		
-		// //fin : on complète avec les villes non rencontrées 
+		Random r = new Random();
+		int random_ind = r.nextInt(parcours.length);
 
-		return null;
+		Individu_VDC enfant1 = new Individu_VDC(this.cities_x, this.cities_y);
+		Individu_VDC enfant2 = new Individu_VDC(conjoint_VDC.get_coord_x(), conjoint_VDC.get_coord_y());
+
+		boolean[] b1 = new boolean[parcours.length];
+		boolean[] b2 = new boolean[parcours.length];
+
+		for(int i = 0 ; i < parcours.length ; i++){
+			b1[i] = false;
+			b2[i] = false;
+		}
+
+		for(int i = 0 ; i < random_ind ; i++){
+			enfant1.set_parcours(i, this.get_parcours(i));
+			b1[this.get_parcours(i)] = true;
+
+			enfant2.set_parcours(i, conjoint_VDC.get_parcours(i));
+			b2[conjoint_VDC.get_parcours(i)] = true;
+		}
+
+		int indice_enfant1 = random_ind;
+		int indice_enfant2 = random_ind;
+
+		for(int i = 0 ; i < parcours.length ; i++){
+			if(!b1[i]){
+				enfant1.set_parcours(indice_enfant1, i);
+				indice_enfant1++;
+			}
+			if(!b2[i]){
+				enfant2.set_parcours(indice_enfant2, i);
+				indice_enfant2++;
+			}
+		}
+
+		Individu[] enfants = new Individu[2];
+		enfants[0] = enfant1;
+		enfants[1] = enfant2;
+
+		return enfants;
 	}
+
 	@Override
 	public void mutation(double prob) {
-		// TODO 
+		
+		for(int i = 0 ; i < parcours.length ; i++){
+			if(Math.random() < prob){
+				
+				int random_ind = (int) (Math.random() * parcours.length);
+				int save = parcours[i];
+				parcours[i] = parcours[random_ind];
+				parcours[random_ind] = save;
+
+			}
+		}
 		
 	}
 	
@@ -93,6 +123,18 @@ public class Individu_VDC implements Individu {
 	public int[] get_parcours(){
 		
 		return parcours;
+
+	}
+
+	public int get_parcours(int i){
+		
+		return parcours[i];
+
+	}
+
+	public void set_parcours(int i, int val){
+		
+		this.parcours[i] = val;
 
 	}
 

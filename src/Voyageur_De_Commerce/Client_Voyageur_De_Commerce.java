@@ -37,7 +37,7 @@ public class Client_Voyageur_De_Commerce {
 		 * coordonnées des villes dans le fichier data_vdc/16coords.txt
 		 */
 		int nbr_villes = 16;
-		int nbr_individus = 100;
+		int nbr_individus = 1000;
 		double prob_mut = 0.01;
 
 		/*
@@ -72,10 +72,12 @@ public class Client_Voyageur_De_Commerce {
 		 */
 		int nb_iter = 0;
 		int nb_iter_max = 1000;
-		int precision = 1000;
+		
 		System.out.println(pop.adaptation_maximale());
+
 		Display_VDC disp = new Display_VDC(pop.individu_maximal());
-		while (nb_iter < nb_iter_max && pop.adaptation_maximale() < precision) {
+
+		while (nb_iter < nb_iter_max) {
 			pop.reproduction(prob_mut);
 			System.out.println("génération " + nb_iter + " : adaptation moyenne = " + pop.adaptation_moyenne()
 					+ " adaptation maximale = " + pop.adaptation_maximale());
