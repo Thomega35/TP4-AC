@@ -84,10 +84,6 @@ public class Client_Voyageur_De_Commerce {
 			nb_iter++;
 			disp.refresh(pop.individu_maximal()); // on met à jour l'affichage avec le nouveau
 		}
-		if (nb_iter == nb_iter_max) {
-			System.out.println("nombre d'itérations max atteint");
-		} else {
-			System.out.println("capacité maximale atteinte");
-		}
+		
 	}
 }
