@@ -36,7 +36,7 @@ public class Client_Voyageur_De_Commerce {
 		 * 16 villes
 		 * coordonnées des villes dans le fichier data_vdc/16coords.txt
 		 */
-		int nbr_villes = 16;
+		int nbr_villes = Integer.parseInt(args[0]);
 		int nbr_individus = 1000;
 		double prob_mut = 0.01;
 
@@ -71,7 +71,7 @@ public class Client_Voyageur_De_Commerce {
 		 * le résultat est alors donné par l'individu maximal de la dernière génération
 		 */
 		int nb_iter = 0;
-		int nb_iter_max = 1000;
+		int nb_iter_max = Integer.parseInt(args[1]);
 		
 		System.out.println(pop.adaptation_maximale());
 

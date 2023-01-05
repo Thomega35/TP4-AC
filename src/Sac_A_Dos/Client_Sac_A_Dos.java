@@ -44,8 +44,8 @@ public class Client_Sac_A_Dos {
 		// int nbr_objets=28;
 		// int capacite=1581;
 		
-		int nbr_objets=70;
-		int capacite=350;		
+		int nbr_objets=Integer.parseInt(args[0]);
+		int capacite=Integer.parseInt(args[1]);		
 		
 		double[] poids = charge_poids("./data_sad/nbrobj"+nbr_objets+"_capacite"+capacite+".txt",nbr_objets);
 
