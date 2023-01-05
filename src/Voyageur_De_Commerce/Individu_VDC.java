@@ -117,6 +117,34 @@ public class Individu_VDC implements Individu {
 		}
 		
 	}
+
+	public void optim_2opt(){
+		for(int i=0;i<parcours.length;i++){
+			for(int j=i+1;j<parcours.length;j++){
+				if (gain(i,j)<0){ 
+					for(int k=0;k<(j-i+1)/2;k++){
+						int tmp = parcours[i+k];
+						parcours[i+k] = parcours[j-k];
+						parcours[j-k] = tmp;
+						
+					}
+				}
+			}
+		}		    
+	}
+
+	private double distance(int i, int j){
+		return Math.sqrt(Math.pow(cities_x[i] - cities_x[j], 2) + Math.pow(cities_y[i] - cities_y[j], 2));
+	}
+	
+	private double gain(int i, int j){
+		int nb_villes = parcours.length;
+		 double gain = distance(parcours[i], parcours[(j+1)%nb_villes])
+				 	 + distance(parcours[(i+nb_villes-1)%nb_villes], parcours[j])
+				 	 - distance(parcours[(i+nb_villes-1)%nb_villes], parcours[i])
+				 	 - distance(parcours[j], parcours[(j+1)%nb_villes]);
+         return gain;
+	}
 	
 	/* Accesseurs (pour Display_VDC)
 	 */

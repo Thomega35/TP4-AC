@@ -55,6 +55,7 @@ public class Client_Voyageur_De_Commerce {
 		Individu_VDC[] indiv = new Individu_VDC[nbr_individus];
 		for (int i = 0; i < nbr_individus; i++) {
 			indiv[i] = new Individu_VDC(coord_x, coord_y);
+			indiv[i].optim_2opt();
 		}
 
 		/*

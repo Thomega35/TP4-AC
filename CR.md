@@ -1,7 +1,7 @@
 # Compte rendu TP Algorithmes génétiques
 
 Le but de ce TP est de résoudre deux problèmes à l'aide d'algorithme génétiques.
-Avant tout il faut coder la classe Algorithme génétique
+Dans un premier temps nous allons mettre en place la classe "Algorithme Genetique" puis modéliser les deux problèmes précédement cités dans le but d'apporter une solution.
 
 ## 1 - Définition classe Algorithme Génétique
 
@@ -49,8 +49,14 @@ $$d = \sqrt{(x_{i+1} - x_i)^2 + (y_{i+1} - y_i)^2}$$
 
 Ensuite pour le croissement il faut faire attention à ne pas remettre les mêmes éléments dans le même enfant. Pour éviter cela nous enregistrons les éléments enregistrés dans les deux enfants dans la première étape et nous completons par les éléments manquants.
 
-Enfin pour la mutation on intervertis aléatoirement deux villes.
+Pour la mutation on intervertis aléatoirement deux villes.
 
 *La classe Client est globallement la même que pour le problème du Sac à dos*
 
-Notre algorithme trouve la meilleur solution pour les cas 4 et 16. Une solution approché pour 64. Et aucune solution pour le cas avec 250 villes. Cela est compréhensible et normale au vu de la complixité de ce problème.
+Enfin nous avons rajouté l'étape d'optimisation locale donnée dans le sujet.
+
+Notre algorithme trouve la meilleur solution pour les cas 4, 16 et 64. Cependant pour le cas avec 250 villes l'algorithme de trouve pas la solution attendue.
+
+## 4 - Conclusion
+
+Pour conclure ce TP nous a permis d'approfondir nos connaisance en algorithmes génétiques. Cette technique pourra nous être très utile par la suite pour trouver des solutions, au moins approché, à des problèmes.
